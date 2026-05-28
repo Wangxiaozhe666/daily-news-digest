@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#eef3f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;padding:20px 10px;}
+.container{max-width:600px;margin:0 auto;}
+.header{background:linear-gradient(135deg,#4a90d9,#357abd);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:16px;color:#fff;}
+.header h1{font-size:22px;font-weight:700;letter-spacing:1px;margin-bottom:6px;}
+.header .sub{font-size:13px;opacity:0.85;}
+.card{background:#fff;border-radius:14px;padding:20px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.card-title{font-size:16px;font-weight:600;color:#4a90d9;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #e8f0fe;}
+.gold-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;}
+.gold-row+.gold-row{border-top:1px solid #f5f5f5;}
+.gold-label{font-size:14px;color:#666;}
+.gold-value{font-size:20px;font-weight:700;color:#333;}
+.gold-change{font-size:14px;font-weight:600;}
+.gold-update{font-size:12px;color:#999;text-align:right;margin-top:10px;}
+table.news-table{width:100%;border-collapse:collapse;}
+.footer{text-align:center;font-size:12px;color:#999;padding:20px 0 10px;}
+@media(max-width:480px){.header{padding:24px 16px;}.header h1{font-size:18px;}.card{padding:14px;}.gold-value{font-size:18px;}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>&#x1f4f0; __TITLE__</h1>
+<div class="sub">__DATE__ __WEEKDAY__</div>
+</div>
+
+<div class="card">
+<div class="card-title"><span>&#x1f947;</span> __GOLD_TITLE__</div>
+<div class="gold-row">
+<span class="gold-label">&#x1f30d; __GOLD_INTL_LABEL__</span>
+<span style="text-align:right">
+<span class="gold-value">__GOLD_INTL_PRICE__</span>
+<span class="gold-change" style="color:__GOLD_COLOR__">__GOLD_ICON__ __GOLD_CHANGE_SIGN____GOLD_INTL_CHANGE__%</span>
+</span>
+</div>
+<div class="gold-row">
+<span class="gold-label">&#x1f1e8;&#x1f1f3; __GOLD_DOM_LABEL__</span>
+<span style="text-align:right">
+<span class="gold-value">__GOLD_DOM_PRICE__</span>
+<span style="font-size:14px;color:#999"> __GOLD_DOM_UNIT__</span>
+</span>
+</div>
+<div class="gold-update">&#x23f1; __GOLD_UPDATE__</div>
+</div>
+
+<div class="card">
+<div class="card-title"><span>&#x1f1e8;&#x1f1f3;</span> __DOM_TITLE__</div>
+<table class="news-table">__DOM_NEWS__</table>
+</div>
+
+<div class="card">
+<div class="card-title"><span>&#x1f30f;</span> __INTL_TITLE__</div>
+<table class="news-table">__INTL_NEWS__</table>
+</div>
+
+<div class="footer">
+<p>&#x1f4ec; __FOOTER_AUTO__</p>
+<p style="margin-top:4px">__FOOTER_GEN__ <a href="#">GitHub Actions</a> __FOOTER_DATE__</p>
+</div>
+
+</div>
+</body>
+</html>
