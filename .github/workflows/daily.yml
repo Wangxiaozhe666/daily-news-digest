@@ -1,0 +1,22 @@
+    name: Daily News Digest
+
+    on:
+      schedule:
+        - cron: '0 23 * * *'
+      workflow_dispatch:
+
+    jobs:
+      send-news:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-python@v5
+            with:
+              python-version: '3.12'
+          - run: pip install -r requirements.txt
+          - run: python send_daily.py
+            env:
+              SMTP_USER: ${{ secrets.SMTP_USER }}
+              SMTP_PASS: ${{ secrets.SMTP_PASS }}
+              SMTP_TO: ${{ secrets.SMTP_TO }}
