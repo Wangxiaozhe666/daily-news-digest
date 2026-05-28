@@ -32,25 +32,59 @@ def log(msg):
 # === Gold price ===
 def fetch_gold_price():
     r = {'success':False,'intl_price':'--','intl_chg':'--','dom_price':'--','dom_chg':'--','update':'--'}
+    S.headers.update({'Referer': 'https://finance.sina.com.cn/futures/quotes/XAUUSD.shtml'})
     try:
-        resp = S.get('https://hq.sinajs.cn/list=xauusd', timeout=TIMEOUT)
-        resp.encoding='gbk'
-        m = re.search(r'"(.*?)"', resp.text)
-        if m and len(m.group(1).split(','))>=5:
-            p = m.group(1).split(',')
-            r['intl_price'], r['intl_chg'] = p[1], p[4]
-            r['success'] = True
-            log(f'国际金价: ${p[1]} ({p[4]}%)')
+        resp = S.get('https://hq.sinajs.cn/list=hf_XAU', timeout=TIMEOUT)
+        resp.encoding = 'gbk'
+        m = re.search(r'"([^"]*)"', resp.text)
+        if m:
+            parts = m.group(1).split(',')
+            if len(parts) >= 14:
+                cur = parts[0]
+                prev = parts[1]
+                chg_pct = '0.00'
+                try:
+                    chg_pct = f'{(float(cur) - float(prev)) / float(prev) * 100:.2f}'
+                except:
+                    pass
+                r['intl_price'] = cur
+                r['intl_chg'] = chg_pct
+                r['success'] = True
+                log(f'国际金价: ${cur} ({chg_pct}%)')
     except Exception as e:
         log(f'国际金价失败: {e}')
+    if not r['success']:
+        try:
+            resp = S.get('https://hq.sinajs.cn/list=hf_GC', timeout=TIMEOUT)
+            resp.encoding = 'gbk'
+            m = re.search(r'"([^"]*)"', resp.text)
+            if m:
+                parts = m.group(1).split(',')
+                if len(parts) >= 6 and parts[0]:
+                    r['intl_price'] = parts[0]
+                    r['success'] = True
+                    log(f'纽约金(备用): ${parts[0]}')
+        except:
+            pass
     try:
-        resp = S.get('https://hq.sinajs.cn/list=au9999', timeout=TIMEOUT)
-        resp.encoding='gbk'
-        m = re.search(r'"(.*?)"', resp.text)
-        if m and len(m.group(1).split(','))>=5:
-            p = m.group(1).split(',')
-            r['dom_price'], r['dom_chg'] = p[1], p[4]
-            log(f'国内金价: {p[1]}元/克 ({p[4]}%)')
+        resp = S.get('https://hq.sinajs.cn/list=sh518880', timeout=TIMEOUT)
+        resp.encoding = 'gbk'
+        m = re.search(r'"([^"]*)"', resp.text)
+        if m:
+            parts = m.group(1).split(',')
+            if len(parts) >= 6:
+                etf_price = parts[3]
+                etf_prev = parts[2]
+                gold_per_gram = '%.2f' % (float(etf_price) * 100)
+                chg_pct = '0.00'
+                try:
+                    pct = (float(etf_price) - float(etf_prev)) / float(etf_prev) * 100
+                    chg_pct = f'{pct:.2f}'
+                except:
+                    pass
+                r['dom_price'] = gold_per_gram
+                r['dom_chg'] = chg_pct
+                log(f'国内金价: {gold_per_gram}元/克 ({chg_pct}%)')
     except Exception as e:
         log(f'国内金价失败: {e}')
     r['update'] = now.strftime('%H:%M')
@@ -84,25 +118,22 @@ def fetch_domestic_news():
     return news
 
 # === International news (BBC RSS) ===
+# === International news ===
 def fetch_international_news():
     news = []
-    for url, label in [
-        ('https://www.bbc.com/zhongwen/simp/world/index.xml', 'BBC中文'),
-        ('https://feedx.net/rss/bbc-zh.xml', 'BBC中文(备)'),
-    ]:
-        try:
-            resp = S.get(url, timeout=TIMEOUT)
-            root = ET.fromstring(resp.content)
-            for item in root.iter('item'):
-                title = item.findtext('title','')
-                if title and len(title)>5:
-                    news.append({'title':title.strip(),'source':label})
-                    if len(news)>=30: break
-            log(f'{label}: {sum(1 for n in news if n["source"]==label)}条')
-            break
-        except Exception as e:
-            log(f'{label}失败: {e}')
-    return news[:30]
+    try:
+        resp = S.get('https://feeds.bbci.co.uk/news/world/rss.xml', timeout=TIMEOUT)
+        root = ET.fromstring(resp.content)
+        for item in root.iter('item'):
+            title = item.findtext('title','')
+            if title and len(title) > 5:
+                news.append({'title': title.strip(), 'source': 'BBC'})
+                if len(news) >= 20:
+                    break
+        log(f'BBC国际新闻: {len(news)}条')
+    except Exception as e:
+        log(f'BBC RSS失败: {e}')
+    return news[:20]
 
 # === Build HTML from template ===
 def build_html(gold, dom_news, intl_news):
