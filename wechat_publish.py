@@ -86,23 +86,23 @@ INSIGHT_POOLS = {
 
 HEARTFELT_MESSAGES = [
     ("信息差就是财富差",
-     "今天的信息，就是明天的决策依据。<br><br>大多数人每天刷手机看的是娱乐，少数人看的是趋势。<br><br>小管帮你做的，就是把这每天<strong>30分钟的信息筛选</strong>，浓缩成5分钟读完的精华。<br><br>坚持一个月，你对世界的感知会和别人不一样。"),
+     "今天的信息，就是明天的决策依据。<br><br>大多数人每天刷手机看的是娱乐，少数人看的是趋势。<br><br>小管的MSG does the heavy lifting，就是把这每天<strong>30分钟的信息筛选</strong>，浓缩成5分钟读完的精华。<br><br>坚持一个月，你对世界的感知会和别人不一样。"),
     ("长期主义者的日常",
      "今天的新闻里，哪些是噪音，哪些是信号？<br><br>金价跌了0.2%，不用慌——这是波动，不是趋势。<br><br>真正值得关注的，是那些<strong>结构性变化</strong>：AI落地、贸易格局、货币政策转向。<br><br>这些才是决定未来3-5年财富走向的变量。"),
     ("普通人能做什么",
-     "世界很大，新闻很多，但你只需要关注三件事：<br><br>① <strong>你的钱</strong>——汇率、金价、利率变化<br>② <strong>你的行业</strong>——技术迭代、政策变化<br>③ <strong>你的选择</strong>——消费、投资、职业<br><br>每天花3分钟读小管早报，三件事都覆盖了。"),
+     "世界很大，新闻很多，但你只需要关注三件事：<br><br>① <strong>你的钱</strong>——汇率、金价、利率变化<br>② <strong>你的行业</strong>——技术迭代、政策变化<br>③ <strong>你的选择</strong>——消费、投资、职业<br><br>每天花3分钟读小管的MSG，三件事都覆盖了。"),
     ("金钱永不眠",
-     "当你睡觉的时候，全球市场在交易。<br><br>纽约的黄金、伦敦的汇率、东京的股市……<br>这就是为什么早上7点的小管早报，是你一天中最重要的信息摄入。<br><br><strong>用信息差，打败焦虑。</strong>"),
+     "当你睡觉的时候，全球市场在交易。<br><br>纽约的黄金、伦敦的汇率、东京的股市……<br>这就是为什么早上7点的小管的MSG，是你一天中最重要的信息摄入。<br><br><strong>用信息差，打败焦虑。</strong>"),
     ("复利的力量",
      "每天积累一点认知，365天后的你和现在完全不同。<br><br>今天的新闻也许看起来和昨天差不多——<br>但连续看一周，你就能发现趋势；<br>连续看一个月，你就能做出判断；<br>连续看一年，你就能<strong>预见未来</strong>。<br><br>坚持读报，本身就是一种复利投资。"),
     ("不确定性中的锚",
-     "世界越来越不确定——关税、战争、AI替代……<br><br>但有一件事是确定的：<strong>信息越多，决策越稳</strong>。<br><br>小管早报不制造焦虑，只帮你把复杂的世界<strong>翻译成行动</strong>。<br><br>今天的新闻，今天的启发，今天行动。"),
+     "世界越来越不确定——关税、战争、AI替代……<br><br>但有一件事是确定的：<strong>信息越多，决策越稳</strong>。<br><br>小管的MSG不制造焦虑，只帮你把复杂的世界<strong>翻译成行动</strong>。<br><br>今天的新闻，今天的启发，今天行动。"),
     ("你的信息饮食",
      "吃什么决定你的身体，<strong>读什么决定你的大脑</strong>。<br><br>与其刷一小时短视频，不如花3分钟读完今天的早报。<br><br>金价走势、汇率波动、科技趋势——<br>这些才是真正能帮你<strong>赚钱和避坑</strong>的信息。"),
     ("宏观是背景，微观是机会",
      "美联储加息、中美博弈、AI革命——<br>这些宏观大事听起来离你很远。<br><br>但汇率变了，你买进口商品贵了；<br>AI来了，你的工作方式要变了；<br>金价涨了，你的资产配置该调整了。<br><br><strong>看懂宏观，才能做好微观决策。</strong>"),
     ("慢下来，快起来",
-     "每天早上的3分钟，是这一天最值钱的3分钟。<br><br>先把世界看清楚，再去行动。<br><br>小管帮你把信息嚼碎了，你只需要<strong>咽下去，消化掉</strong>。<br><br>慢读新闻，快做决策。"),
+     "每天早上的3分钟，是这一天最值钱的3分钟。<br><br>先把世界看清楚，再去行动。<br><br>小管的MSG breaks down information，你只需要<strong>咽下去，消化掉</strong>。<br><br>慢读新闻，快做决策。"),
     ("认知的复利曲线",
      "知识和金钱一样，有复利效应。<br><br>第1天：你看一条新闻<br>第30天：你能看出趋势<br>第100天：你能预判走势<br>第365天：你已经成为身边人的'信息来源'<br><br><strong>今天，是你复利曲线的第{}天。</strong>"),
 ]
@@ -335,34 +335,6 @@ def pick_insight(title, idx):
     pool = INSIGHT_POOLS.get(cat, INSIGHT_POOLS["general"])
     return pool[(idx + DOY) % len(pool)]
 
-def generate_focus(dom_news, intl_news, gold):
-    news_text = ""
-    if dom_news:
-        news_text = dom_news[0]["title"]
-    elif intl_news:
-        news_text = intl_news[0]["title"]
-    else:
-        news_text = "全球市场动态"
-    cat = classify_news(news_text)
-    descriptions = {
-        "money": "这条消息可能影响短期市场走势，值得关注其后续发展以及对个人资产的影响。",
-        "tech": "科技领域的动态正在改变我们的工作和生活方式，了解最新进展有助于把握未来趋势。",
-        "life": "这条消息和你我的日常生活密切相关，建议关注后续政策或产品的变化。",
-        "career": "行业变化正在发生，相关信息可能对你的职业规划有参考价值。",
-        "trade": "全球贸易格局持续演变，相关动向可能影响到进出口商品价格和供应链。",
-    }
-    desc = descriptions.get(cat, "今天的头条新闻，反映了当前最受关注的社会热点。")
-    tips_map = {
-        "money": ["关注本周金价/汇率走势，做好资产配置","短期波动不要慌，看长期趋势","有相关投资的建议设置预警"],
-        "tech": ["建议花30分钟了解相关技术原理","关注行业龙头的最新动态","思考新技术对你所在行业的影响"],
-        "life": ["这条消息可能影响你的消费决策","建议转发给家人一起关注","关注后续官方政策调整"],
-        "career": ["思考行业变化对你的岗位影响","提前布局，储备新技能","新兴方向可能有新职业机会"],
-        "trade": ["跨境消费的朋友注意汇率窗口","相关行业从业者需关注政策走向","全球供应链正在重组，提前准备"],
-    }
-    tips = tips_map.get(cat, ["关注后续发展","思考这条消息对你的影响","和身边的人讨论一下这个话题"])
-    tip_idx = DOY % len(tips)
-    return {"title":news_text,"desc":desc,"tips":[tips[tip_idx],tips[(tip_idx+1)%len(tips)],tips[(tip_idx+2)%len(tips)]]}
-
 def get_heartfelt_message():
     idx = DOY % len(HEARTFELT_MESSAGES)
     msg = HEARTFELT_MESSAGES[idx]
@@ -385,7 +357,7 @@ def make_cover_png():
             raw += bytes([r, g, b])
     return b"\x89PNG\r\n\x1a\n" + ck(b"IHDR", ihdr) + ck(b"IDAT", zlib.compress(raw)) + ck(b"IEND", b"")
 
-def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_title, heartfelt_body, ai_news=None, douyin=None):
+def build_wechat_article(gold, dom_news, intl_news, heartfelt_title, heartfelt_body, ai_news=None, douyin=None):
     def is_up(chg):
         try: return float(chg) > 0
         except: return True
@@ -398,17 +370,32 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
     gold_up_c = "#ff6b6b" if gold_up else "#4ecdc4"
     fx_up_c = "#ff6b6b" if fx_up else "#4ecdc4"
 
+    # Domestic gold summary
+    try:
+        dom_price = float(gold["dom_price"])
+        dom_chg = float(gold["dom_chg"])
+        if dom_chg > 0.3:
+            gold_summary = f"国内金价升至{dom_price:.2f}元/克，溢价明显，短期追高需谨慎。"
+        elif dom_chg > 0:
+            gold_summary = f"国内金价{dom_price:.2f}元/克微涨，溢价收窄，配置窗口仍在。"
+        elif dom_chg < -0.3:
+            gold_summary = f"国内金价回落至{dom_price:.2f}元/克，回调较大，或是逢低布局机会。"
+        elif dom_chg < 0:
+            gold_summary = f"国内金价{dom_price:.2f}元/克小幅回落，观望情绪升温。"
+        else:
+            gold_summary = f"国内金价持平{dom_price:.2f}元/克，市场静待方向。"
+    except:
+        gold_summary = "国内金价暂无变化，持续观望中。"
+
     # --- Build news items with improved card design ---
     def news_card(items, offset=0):
         html = ""
         for i, item in enumerate(items[:5]):
-            insight = pick_insight(item["title"], i + offset)
             html += f"""<div style="margin:0 0 6px 0;padding:6px 0;border-bottom:1px solid #f5f3f0;">
 <div style="display:flex;align-items:flex-start;gap:6px;">
 <span style="font-size:11px;font-weight:600;color:#c8a96e;width:18px;flex-shrink:0;">{i+1}.</span>
 <div>
 <div style="font-size:12.5px;color:#222;line-height:1.5;">{item["title"]}</div>
-<div style="font-size:10.5px;color:#999;line-height:1.5;margin-top:2px;">\U0001f4a1 {insight}</div>
 </div>
 </div>
 </div>"""
@@ -461,7 +448,6 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
         return html
 
     douyin_html = douyin_card(douyin)
-    focus_tips_html = "<br>".join(focus["tips"])
 
     # Color helpers
     bg_c = "#e8e4dd"  # neutral
@@ -472,7 +458,7 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
 
 <!-- ====== HEADER ====== -->
 <div style="background:#fff;border-bottom:2px solid #1a1a2e;padding:20px 16px 10px;margin:0 0 12px;">
-<div style="font-size:22px;font-weight:800;color:#1a1a2e;letter-spacing:2px;">小管早报</div>
+<div style="font-size:22px;font-weight:800;color:#1a1a2e;letter-spacing:2px;">小管的MSG</div>
 <div style="display:flex;justify-content:space-between;font-size:11px;color:#999;margin-top:2px;">
 <span>{DATE_LABEL} {WEEKDAY}</span>
 <span>第{DOY}期</span>
@@ -486,7 +472,8 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
 <div style="font-size:20px;font-weight:700;color:#1a1a2e;">${round(float(gold["intl_price"]))}</div>
 <div style="font-size:10px;color:{"#e74c3c" if float(gold["intl_chg"])>0 else "#27ae60"};">
 {"▲" if gold_up else "▼"} {gold["intl_chg"]}%
-</div>
+                    </div>
+<div style="font-size:7px;color:#ccc;margin-top:2px;">新浪财经</div>
 </div>
 <div style="padding:10px 6px;text-align:center;border-right:1px solid #eee;">
 <div style="font-size:9px;color:#999;font-weight:500;">美元/人民币</div>
@@ -494,27 +481,23 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
 <div style="font-size:10px;color:{"#e74c3c" if float(gold["fx_chg"])>0 else "#27ae60"};">
 {"▲" if fx_up else "▼"} {gold["fx_chg"]}%
 </div>
-</div>
+                    </div>
+<div style="font-size:7px;color:#ccc;margin-top:2px;">新浪财经</div>
 <div style="padding:10px 6px;text-align:center;">
 <div style="font-size:9px;color:#999;font-weight:500;">国内金价</div>
 <div style="font-size:20px;font-weight:700;color:#1a1a2e;">{gold["dom_price"]}</div>
 <div style="font-size:10px;color:{"#e74c3c" if float(gold["dom_chg"])>0 else "#27ae60"};">
 {"▲" if dom_up else "▼"} {gold["dom_chg"]}%
 </div>
-</div>
+                    </div>
+<div style="font-size:7px;color:#ccc;margin-top:2px;">新浪财经</div>
 </div>
 
-<!-- ====== WEATHER + FOCUS ====== -->
+<!-- ====== DOMESTIC GOLD ====== -->
 <div style="margin:0 16px 10px;display:flex;gap:8px;">
-<div style="flex:1;background:#f5f8fa;border-radius:8px;padding:10px;text-align:center;">
-<div style="font-size:22px;">{weather["emoji"]}</div>
-<div style="font-size:10px;color:#5a7a9a;">{weather["desc"]}</div>
-<div style="font-size:15px;font-weight:700;color:#1a3a5a;">{weather["temp_low"]}~{weather["temp_high"]}°</div>
-</div>
-<div style="flex:2;background:#fffaf5;border-radius:8px;padding:10px;border-left:3px solid #c8a96e;">
-<div style="font-size:9px;color:#c8a96e;font-weight:600;">头条</div>
-<div style="font-size:12px;font-weight:600;color:#1a1a2e;line-height:1.4;margin:2px 0;">{focus["title"][:22]}{"..." if len(focus["title"])>22 else ""}</div>
-<div style="font-size:10px;color:#999;line-height:1.4;">{focus["desc"][:25]}...</div>
+<div style="flex:2;background:#fffaf5;border-radius:8px;padding:12px 14px;border-left:3px solid #c8a96e;">
+<div style="font-size:9px;color:#c8a96e;font-weight:600;margin-bottom:4px;">国内金价</div>
+<div style="font-size:13px;font-weight:700;color:#1a1a2e;line-height:1.8;white-space:pre-wrap;word-break:break-all;">{gold_summary}</div>
 </div>
 </div>
 
@@ -554,14 +537,14 @@ def build_wechat_article(gold, dom_news, intl_news, weather, focus, heartfelt_ti
 
 <!-- ====== EDITOR ====== -->
 <div style="margin:0 16px 16px;background:#fcf9f5;border-radius:8px;padding:14px;">
-<div style="font-size:11px;font-weight:600;color:#c8a96e;margin-bottom:4px;">\u270d\ufe0f 小管的真心话 · {heartfelt_title}</div>
+<div style="font-size:11px;font-weight:600;color:#c8a96e;margin-bottom:4px;">\u270d\ufe0f 小管的MSG Insights · {heartfelt_title}</div>
 <div style="font-size:12px;color:#555;line-height:1.7;">{heartfelt_body}</div>
-<div style="margin-top:8px;font-size:10px;color:#bbb;text-align:right;">—— 小管</div>
+<div style="margin-top:8px;font-size:10px;color:#bbb;text-align:right;">— 小管的MSG</div>
 </div>
 
 <!-- ====== FOOTER ====== -->
 <div style="text-align:center;padding:0 16px 16px;">
-<div style="font-size:8px;color:#ddd;letter-spacing:1px;">\u2014\u2014 小管早报 \u2014\u2014</div>
+<div style="font-size:8px;color:#ddd;letter-spacing:1px;">\u2014\u2014 小管的MSG \u2014\u2014</div>
 </div>
 </div>"""
 
@@ -585,8 +568,8 @@ def publish_to_wechat(article_html, gold):
     log("创建草稿...")
     r3 = S.post("https://api.weixin.qq.com/cgi-bin/draft/add",
         params={"access_token":tok},
-        json={"articles":[{"title":"小管早报 "+DATE_LABEL,"author":"小管","content":article_html,
-            "digest":"小管早报 "+DATE_LABEL,"thumb_media_id":up["media_id"],"need_open_comment":1,"only_fans_can_comment":0}]},
+        json={"articles":[{"title":"小管的MSG "+DATE_LABEL,"author":"小管的MSG","content":article_html,
+            "digest":"小管的MSG "+DATE_LABEL,"thumb_media_id":up["media_id"],"need_open_comment":1,"only_fans_can_comment":0}]},
         timeout=15)
     draft_res = r3.json()
     log("草稿结果: "+json.dumps(draft_res,ensure_ascii=False))
@@ -607,7 +590,7 @@ def send_email(html):
     msg = MIMEMultipart("alternative")
     msg["From"] = SMTP_USER
     msg["To"] = SMTP_TO
-    msg["Subject"] = Header("小管早报 | %s %s" % (DATE_LABEL, WEEKDAY), "utf-8")
+    msg["Subject"] = Header("小管的MSG | %s %s" % (DATE_LABEL, WEEKDAY), "utf-8")
     msg.attach(MIMEText("请在支持HTML的邮件客户端中查看。","plain","utf-8"))
     msg.attach(MIMEText(html,"html","utf-8"))
     try:
@@ -622,23 +605,20 @@ def send_email(html):
         return False
 
 def main():
-    log("===== 小管早报 %s %s ===== %s" % (DATE_LABEL, WEEKDAY, "第%d天" % DOY))
+    log("===== 小管的MSG %s %s ===== %s" % (DATE_LABEL, WEEKDAY, "第%d天" % DOY))
     gold = fetch_gold_price()
-    weather = fetch_weather()
     dom = fetch_domestic_news()
     intl = fetch_international_news()
     ai = fetch_ai_news()
     douyin = fetch_douyin_hot()
-    log("Gold[%s] Weather[%s] CN[%d] Intl[%d] AI[%d] Douyin[%d]" % (
-        "OK" if gold["success"] else "FAIL", weather["desc"],
+    log("Gold[%s] CN[%d] Intl[%d] AI[%d] Douyin[%d]" % (
+        "OK" if gold["success"] else "FAIL",
         len(dom), len(intl), len(ai), len(douyin)))
     if gold["success"]:
         log("Gold: $%s (%s)" % (gold["intl_price"], gold["intl_chg"]))
-    focus = generate_focus(dom, intl, gold)
     hf_title, hf_body = get_heartfelt_message()
-    log("Focus: %s" % focus["title"][:30])
     log("Heartfelt: %s" % hf_title)
-    article = build_wechat_article(gold, dom, intl, weather, focus, hf_title, hf_body, ai, douyin)
+    article = build_wechat_article(gold, dom, intl, hf_title, hf_body, ai, douyin)
     if APPID and APPSECRET:
         publish_to_wechat(article, gold)
     else:
@@ -646,10 +626,9 @@ def main():
     send_email(article)
     print()
     print("="*50)
-    print("  小管早报 - %s (%s)" % (DATE_LABEL, "第%d天" % DOY))
+    print("  小管的MSG - %s (%s)" % (DATE_LABEL, "第%d天" % DOY))
     print("  Gold: $%s (%s)" % (gold["intl_price"], gold["intl_chg"]))
     print("  CN Gold: %s  |  USD/CNY: %s" % (gold["dom_price"], gold["fx"]))
-    print("  Weather: %s %s~%s\u2103" % (weather["desc"], weather["temp_low"], weather["temp_high"]))
     print("  CN: %d  Intl: %d  AI: %d  Douyin: %d" % (len(dom), len(intl), len(ai), len(douyin)))
     print("="*50)
 
