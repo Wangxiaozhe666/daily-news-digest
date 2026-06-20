@@ -1,8 +1,6 @@
 name: 小管的MSG
 
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: '0 23 * * *'   # 07:00 Beijing time
   workflow_dispatch:        # manual trigger
