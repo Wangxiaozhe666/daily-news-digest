@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '0 23 * * *'   # 07:00 Beijing time
   workflow_dispatch:        # manual trigger
-  push:                     # temporary: trigger via git push
-    branches: [main]
 
 jobs:
   daily-digest:
